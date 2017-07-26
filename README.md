@@ -1,28 +1,109 @@
 # NgxOurpalmCkeditor
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.0.
+Angular 2+ Port for the ckeditor [http://ckeditor.com](http://ckeditor.com)
 
-## Development server
+## Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```
+npm install ngx-ourpalm-ckeditor --save
+```
 
-## Code scaffolding
+## Demo1
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+* Step1: Include CKEditor javascript files in your application
 
-## Build
+```
+ <script src="https://cdn.ckeditor.com/4.5.11/full/ckeditor.js"></script>
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+* Step2: Include CKEditorModule in your main module
 
-## Running unit tests
+```
+import { OurpalmCKEditorModule } from 'ngx-ourpalm-ckeditor';
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+@NgModule({
+  // ...
+  imports:      [
+    OurpalmCKEditorModule
+  ],
+  // ...
+})
+export class AppModule { }
+```
 
-## Running end-to-end tests
+* Step3: Use it in your component
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+```
+import { Component } from '@angular/core';
 
-## Further help
+@Component({
+  selector: 'sample',
+  template: `
+  <ourpalm-ckeditor
+    [(ngModel)]="ckeditorContent"
+    [config]="{uiColor: '#99000'}"
+    [readonly]="false"
+    (change)="onChange($event)"
+    (ready)="onReady($event)"
+    (focus)="onFocus($event)"
+    (blur)="onBlur($event)"
+    debounce="500">
+  </ourpalm-ckeditor>
+  `
+})
+export class Sample{
+  constructor(){
+    this.ckeditorContent = `<p>My HTML</p>`;
+  }
+}
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Demo2 (async load ckeditor.js)
+
+* Step1: Include CKEditorModule in your main module
+
+```
+import { OurpalmCKEditorModule } from 'ngx-ourpalm-ckeditor';
+
+@NgModule({
+  // ...
+  imports:      [
+    OurpalmCKEditorModule
+  ],
+  // ...
+})
+export class AppModule { }
+```
+
+* Step2: Use it in your component
+
+```
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'sample',
+  template: `
+  <ourpalm-ckeditor
+    [ckeditorJsPath]="'assets/ckeditor/ckeditor.js'"
+    [ckeditorBasePath]="'assets/ckeditor/'"
+    [(ngModel)]="ckeditorContent"
+    [config]="{uiColor: '#99000'}"
+    [readonly]="false"
+    (change)="onChange($event)"
+    (ready)="onReady($event)"
+    (focus)="onFocus($event)"
+    (blur)="onBlur($event)"
+    debounce="500">
+  </ourpalm-ckeditor>
+  `
+})
+export class Sample{
+  constructor(){
+    this.ckeditorContent = `<p>My HTML</p>`;
+  }
+}
+```
+
+In this way, ckeditor.js will load async by dynamic. So the bundle file would not include ckeditor.js
+
+In order to async load the ckeditor.js, I have to modify the ng2-ckeditor. Modify from the project [ng2-ckeditor](https://github.com/chymz/ng2-ckeditor) , thank a lot.

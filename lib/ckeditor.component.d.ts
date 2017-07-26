@@ -1,0 +1,32 @@
+import { AfterViewInit, EventEmitter, NgZone, OnChanges, OnDestroy, SimpleChanges } from "@angular/core";
+import { ScriptLoaderService } from "./script-loader.service";
+export declare class CKEditorComponent implements OnChanges, AfterViewInit, OnDestroy {
+    private loader;
+    config: any;
+    readonly: boolean;
+    debounce: string;
+    ckeditorJsPath: string;
+    ckeditorBasePath: string;
+    change: EventEmitter<{}>;
+    ready: EventEmitter<{}>;
+    blur: EventEmitter<{}>;
+    focus: EventEmitter<{}>;
+    host: any;
+    _value: string;
+    instance: any;
+    debounceTimeout: any;
+    zone: NgZone;
+    constructor(zone: NgZone, loader: ScriptLoaderService);
+    value: any;
+    ngOnChanges(changes: SimpleChanges): void;
+    ngOnDestroy(): void;
+    ngAfterViewInit(): void;
+    updateValue(value: any): void;
+    ckeditorPreInit(config: any): void;
+    ckeditorInit(config: any): void;
+    writeValue(value: any): void;
+    onChange(_: any): void;
+    onTouched(): void;
+    registerOnChange(fn: any): void;
+    registerOnTouched(fn: any): void;
+}
