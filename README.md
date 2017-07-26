@@ -4,7 +4,7 @@ Angular 2+ Port for the ckeditor [http://ckeditor.com](http://ckeditor.com)
 
 ## Installation
 
-```
+```javascript
 npm install ngx-ourpalm-ckeditor --save
 ```
 
@@ -12,13 +12,13 @@ npm install ngx-ourpalm-ckeditor --save
 
 * Step1: Include CKEditor javascript files in your application
 
-```
+```javascript
  <script src="https://cdn.ckeditor.com/4.5.11/full/ckeditor.js"></script>
 ```
 
 * Step2: Include CKEditorModule in your main module
 
-```
+```javascript
 import { OurpalmCKEditorModule } from 'ngx-ourpalm-ckeditor';
 
 @NgModule({
@@ -33,7 +33,7 @@ export class AppModule { }
 
 * Step3: Use it in your component
 
-```
+```javascript
 import { Component } from '@angular/core';
 
 @Component({
@@ -62,7 +62,7 @@ export class Sample{
 
 * Step1: Include CKEditorModule in your main module
 
-```
+```javascript
 import { OurpalmCKEditorModule } from 'ngx-ourpalm-ckeditor';
 
 @NgModule({
@@ -77,7 +77,7 @@ export class AppModule { }
 
 * Step2: Use it in your component
 
-```
+```javascript
 import { Component } from '@angular/core';
 
 @Component({
